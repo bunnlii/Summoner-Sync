@@ -1,0 +1,8 @@
+
+Color Scheme
+#200c0e //darker
+#2a0e0f //lighter
+#9b6e39 //darker
+#b38655 //lighter
+#7c7246 
+#a3937c 
