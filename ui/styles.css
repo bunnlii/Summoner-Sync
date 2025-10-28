@@ -435,7 +435,7 @@ footer {
     background: linear-gradient(to top, 
                 rgba(215, 65, 124, 0.95),
                 rgba(215, 65, 124, 0.8) 80%,
-                rgba(215, 65, 124, 0.6));
+                rgba(194, 75, 122, 0.6));
     backdrop-filter: blur(10px) saturate(1.2);
     box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.2),
                 0 -1px 0 rgba(184, 139, 79, 0.1);
@@ -451,6 +451,7 @@ footer {
     justify-content: space-between;
     align-items: center;
     padding: 0 2rem;
+    color: rgba(212,175,55);
 }
 
 .github-link {

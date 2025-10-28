@@ -44,7 +44,7 @@
     //make sure riot id is in the right format
     const match = val.match(/^\s*([^#]+)#([A-Za-z0-9]{1,5})\s*$/);
     if (!match) {
-      showPopup('check if your summoner is spelled correctly');
+      showPopup('check if your RIOT ID is correct');
       input.setAttribute('aria-invalid', 'true');
       input.focus();
       return;
