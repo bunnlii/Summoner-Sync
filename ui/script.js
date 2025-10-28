@@ -156,5 +156,30 @@
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAllTooltips(); });
 
   // initialize
+  // Background offset control (live tuning)
+  const bgRange = document.getElementById('bg-offset-range');
+  const bgValue = document.getElementById('bg-offset-value');
+  const bgReset = document.getElementById('bg-offset-reset');
+  // read default from CSS var (strip %)
+  let defaultOffset = getComputedStyle(document.documentElement).getPropertyValue('--bg-video-offset') || '70%';
+  defaultOffset = parseInt(defaultOffset.trim(), 10) || 70;
+  if (bgRange) {
+    bgRange.value = defaultOffset;
+    bgRange.addEventListener('input', (e) => {
+      const v = e.target.value;
+      document.documentElement.style.setProperty('--bg-video-offset', v + '%');
+      if (bgValue) bgValue.textContent = v + '%';
+    });
+    // reflect initial value
+    if (bgValue) bgValue.textContent = bgRange.value + '%';
+  }
+  if (bgReset) {
+    bgReset.addEventListener('click', () => {
+      document.documentElement.style.setProperty('--bg-video-offset', defaultOffset + '%');
+      if (bgRange) { bgRange.value = defaultOffset; }
+      if (bgValue) bgValue.textContent = defaultOffset + '%';
+    });
+  }
+
   updateAddButton();
 })();
