@@ -22,7 +22,7 @@
     <header>
       <div class="header-content">
         <h1>Summoner Sync</h1>
-        <nav>
+        <nav aria-label="Main navigation">
           <ul>
             <li><a href="#about">About</a></li>
             <li><a href="#team">Meet the Team</a></li>
@@ -32,16 +32,23 @@
     </header>
     <main>
       <div class="search-container">
-        <div class="player-search">
-          <div class="input-wrapper">
-            <input type="text" placeholder="Enter summoner name..." class="search-input">
-            <div class="help-icon" data-tooltip="Enter your League of Legends RIOT ID. Click ADD ANOTHER PLAYER to compare with others up to 4 other players">?</div>
+        <div class="players-list" aria-live="polite" aria-label="Selected players">
+          <div id="player-chips" class="player-chips" aria-hidden="false"></div>
+
+          <div class="player-search">
+            <div class="input-wrapper">
+              <input id="player-input" name="player-input" type="text" placeholder="Enter summoner name..." class="search-input" aria-label="Summoner name input">
+              <div class="help-icon" tabindex="0" role="button" aria-label="Help: Enter your League of Legends RIOT ID. Click Add Another Player to compare with others up to 4 other players" aria-controls="tooltip-1" aria-expanded="false">?</div>
+              <div id="tooltip-1" class="tooltip" role="tooltip" aria-hidden="true">Enter your League of Legends RIOT ID. Click ADD ANOTHER PLAYER to compare with others up to 4 other players</div>
+              <div id="input-error" class="input-error" role="alert" aria-live="assertive" aria-atomic="true"></div>
+            </div>
+            <button id="search-btn" class="search-btn" aria-label="Search players">Search</button>
           </div>
-          <button class="search-btn">Search</button>
         </div>
-        <button class="add-player-btn">Add Another Player</button>
+        <button class="add-player-btn" id="add-player" aria-label="Add another player">Add Another Player</button>
       </div>
     </main>
+    <script src="script.js"></script>
     <footer>
       <div class="footer-content">
         <p>
