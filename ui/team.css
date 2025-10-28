@@ -1,0 +1,332 @@
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  position: relative;
+  color: white;
+  font-family: "Calligrapher", cursive;
+  background-color: #0a0506;
+}
+
+:root {
+  --primary: #d7417c; /* main pink */
+  --primary-light: #ff6699; /* lighter pink for hover states */
+  --primary-dark: #b3305e; /* darker pink for shadows/depth */
+  --gold: #b88b4f; /* gold accent */
+  --gold-strong: #d4af37; /* brighter gold for hover */
+  --gold-muted: #ffdca0; /* soft gold */
+  --panel-bg: rgba(215, 65, 124, 0.15); /* transparent pink for panels */
+  --white-accent: rgba(255, 255, 255, 0.95);
+  --bg-video-offset: 70%; /* visible center Y for the video */
+}
+
+/* Background overlay (tint) — video is inserted in HTML as #bg-video */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(10, 6, 6, 0.12),
+    rgba(10, 6, 6, 0.6)
+  );
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Background video element (fills viewport behind UI) */
+#bg-video {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+  pointer-events: none;
+  filter: brightness(0.62) contrast(1.03) saturate(0.95);
+  object-position: center var(--bg-video-offset);
+  transition: opacity 0.8s ease-in-out;
+}
+
+@media (max-width: 640px) {
+  #bg-video {
+    display: none;
+  }
+  body::before {
+    background: rgba(10, 6, 6, 0.85);
+  }
+}
+
+header {
+  padding: 1.5rem 2rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.site-logo {
+  height: 64px;
+  width: 64px;
+  display: block;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+  object-fit: cover;
+}
+
+@media (max-width: 640px) {
+  .site-logo {
+    height: 48px;
+    width: 48px;
+  }
+  .site-brand h1 {
+    font-size: 1.4rem;
+  }
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+nav a {
+  color: var(--gold);
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: color 0.25s ease, text-shadow 0.25s ease;
+  font-family: "Cinzel Decorative", serif;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.55);
+}
+
+nav a:hover {
+  color: var(--gold-strong);
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+}
+
+h1 {
+  font-family: "Cinzel Decorative", serif;
+  font-size: 2.5rem;
+  letter-spacing: 0.1em;
+  color: var(--white-accent);
+  text-shadow: 0 0 18px rgba(216, 180, 110, 0.18),
+    0 0 36px rgba(180, 130, 70, 0.12);
+  margin: 0;
+}
+
+main {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 3rem 1rem;
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 15px 50px rgba(215, 65, 124, 0.15),
+      0 5px 20px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  }
+  100% {
+    box-shadow: 0 15px 50px rgba(215, 65, 124, 0.25),
+      0 5px 20px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(184, 139, 79, 0.2);
+  }
+}
+
+footer {
+  padding: 1rem;
+  width: 100%;
+  background: linear-gradient(
+    to top,
+    rgba(215, 65, 124, 0.95),
+    rgba(215, 65, 124, 0.8) 80%,
+    rgba(194, 75, 122, 0.6)
+  );
+  backdrop-filter: blur(10px) saturate(1.2);
+  box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.2), 0 -1px 0 rgba(184, 139, 79, 0.1);
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 2rem;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  color: rgba(212, 175, 55);
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+
+.social-links a {
+  font-size: 1.6rem;
+  color: var(--gold);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.social-links a:hover {
+  color: var(--gold-strong);
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.4);
+}
+
+.social-links a:active {
+  transform: scale(0.97);
+}
+
+/* ---------- PLAYER CARD ---------- */
+.player-card {
+  width: 320px;
+  height: 440px;
+  perspective: 1000px;
+  cursor: pointer;
+  position: relative;
+  border-radius: 20px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.player-card:hover {
+  transform: scale(1.05);
+  box-shadow: 
+    0 0 30px rgba(212, 175, 55, 0.5),
+    0 0 60px rgba(215, 65, 124, 0.25);
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1);
+  transform-style: preserve-3d;
+  position: relative;
+  border-radius: 20px;
+}
+
+.player-card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 20px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1.5px solid var(--gold);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--gold-muted);
+  font-family: "Cinzel Decorative", serif;
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+.player-card.active {
+  box-shadow: 0 0 25px rgba(212, 175, 55, 0.5),
+    0 0 60px rgba(215, 65, 124, 0.25);
+  transform: scale(1.03);
+  transition: all 0.4s ease;
+}
+.card-front img.player-img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%; /* 👑 makes it circular */
+  object-fit: cover;
+  border: 3px solid var(--gold);
+  box-shadow: 
+    0 0 20px rgba(212, 175, 55, 0.4),
+    0 0 40px rgba(215, 65, 124, 0.2);
+  margin-top: 1.2rem;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+
+.card-front h2 {
+  font-size: 1.8rem;
+  margin: 0.6rem 0 0;
+  color: var(--gold-strong);
+  text-shadow: 0 0 10px rgba(216,180,110,0.32);;
+}
+
+.card-front p {
+  font-size: 1.1rem;
+  color: var(--white-accent);
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  background: rgba(10, 10, 10, 0.85);
+  padding: 1.5rem;
+}
+
+.card-back h3 {
+  color: var(--gold-strong);
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+.card-back p {
+  color: var(--white-accent);
+  font-size: 1rem;
+  margin: 0.3rem 0;
+}
+.github-link {
+    color: var(--gold);
+    font-size: 1.8rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.github-link:hover {
+    color: var(--gold-strong);
+    transform: translateY(-2px);
+    text-shadow: 0 0 15px rgba(216,180,110,0.32);
+}
+
+.github-link:active {
+    transform: translateY(0);
+}
