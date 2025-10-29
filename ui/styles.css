@@ -413,8 +413,7 @@ main {
   word-wrap: break-word;
 }
 
-.search-btn,
-.add-player-btn {
+.search-btn{
   padding: 1rem 2rem;
   background: linear-gradient(135deg, var(--primary-light), var(--primary));
   color: var(--gold-muted);
@@ -425,6 +424,22 @@ main {
   font-size: 1.1rem;
   font-weight: 600;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 36px rgba(215, 65, 124, 0.2),
+    0 6px 18px rgba(255, 255, 255, 0.05) inset,
+    0 0 0 1px rgba(184, 139, 79, 0.1);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+.add-player-btn{
+  padding: 1rem 2rem;
+  color: var(--gold-muted);
+  border: 1.5px solid var(--gold);
+  border-radius: 8px;
+  cursor: pointer;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 1rem;
+  font-weight: 600;
   box-shadow: 0 10px 36px rgba(215, 65, 124, 0.2),
     0 6px 18px rgba(255, 255, 255, 0.05) inset,
     0 0 0 1px rgba(184, 139, 79, 0.1);
@@ -446,8 +461,7 @@ main {
   transition: opacity 0.3s ease;
 }
 
-.search-btn:hover,
-.add-player-btn:hover {
+.search-btn:hover{
   background: linear-gradient(135deg, var(--primary), var(--gold));
   transform: translateY(-2px);
   box-shadow: 0 12px 28px rgba(215, 65, 124, 0.25),
@@ -474,7 +488,7 @@ main {
 }
 
 .add-player-btn:hover {
-  background: linear-gradient(135deg, var(--primary), var(--gold));
+background:var(--primary);
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(215, 65, 124, 0.3);
   color: var(--gold-strong);
