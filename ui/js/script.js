@@ -55,7 +55,6 @@
       input.focus();
       return;
     }
-    // prevent duplicates (case-insensitive)
     const existing = Array.from(
       playersChips.querySelectorAll(".chip-name")
     ).map((s) => s.textContent.toLowerCase());
@@ -87,7 +86,6 @@
     const values = chips.slice();
     const cur = input.value.trim();
     if (cur) {
-      // validate current input before searching
       const match = cur.match(/^\s*([^#]+)#([A-Za-z0-9]{1,5})\s*$/);
       if (!match) {
         showPopup("check if your summoner is spelled correctly");
@@ -105,9 +103,7 @@
     );
   });
 
-  // Tooltip helpers (for the single input help icon)
   const helpIcon = document.querySelector(".help-icon");
-  // popup notification element + helper
   let popupTimeout = null;
   function showPopup(message) {
     let popup = document.getElementById("global-popup");
@@ -117,7 +113,7 @@
       popup.className = "global-popup";
       popup.setAttribute("role", "alert");
       popup.setAttribute("aria-live", "assertive");
-      // structure: message + close button
+      //message + close button
       popup.innerHTML =
         '<span class="popup-message" aria-atomic="true"></span><button class="popup-close" aria-label="Dismiss notification">\u00D7</button>';
       document.body.appendChild(popup);
@@ -197,11 +193,9 @@
   });
 
   // initialize
-  // Background offset control (live tuning)
   const bgRange = document.getElementById("bg-offset-range");
   const bgValue = document.getElementById("bg-offset-value");
   const bgReset = document.getElementById("bg-offset-reset");
-  // read default from CSS var (strip %)
   let defaultOffset =
     getComputedStyle(document.documentElement).getPropertyValue(
       "--bg-video-offset"
@@ -233,3 +227,21 @@
   updateAddButton();
 })();
 
+document.addEventListener("DOMContentLoaded", () => {
+  const header = document.querySelector("header");
+  const child = document.getElementById("child");
+  let lastScrollY = child.scrollTop;
+
+  child.addEventListener("scroll", () => {
+    const currentScroll = child.scrollTop;
+
+    if (currentScroll > lastScrollY && currentScroll > 100) {
+      header.classList.add("hidden");
+    } 
+    else {
+      header.classList.remove("hidden");
+    }
+
+    lastScrollY = currentScroll;
+  });
+});

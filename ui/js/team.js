@@ -31,3 +31,23 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const header = document.querySelector("header");
+  const child = document.getElementById("child");
+  let lastScrollY = child.scrollTop;
+
+  child.addEventListener("scroll", () => {
+    const currentScroll = child.scrollTop;
+
+    if (currentScroll > lastScrollY && currentScroll > 100) {
+      header.classList.add("hidden");
+    } 
+    else {
+      header.classList.remove("hidden");
+    }
+
+    lastScrollY = currentScroll;
+  });
+});
+

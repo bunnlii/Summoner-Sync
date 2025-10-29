@@ -1,8 +1,13 @@
 
 Color Scheme
-#200c0e //darker
-#2a0e0f //lighter
-#9b6e39 //darker
-#b38655 //lighter
-#7c7246 
-#a3937c 
+:root {
+  --primary: #d7417c;
+  --primary-light: #ff6699;
+  --primary-dark: #b3305e;
+  --gold: #b88b4f;
+  --gold-strong: #d4af37;
+  --gold-muted: #ffdca0;
+  --panel-bg: rgba(215, 65, 124, 0.15);
+  --white-accent: rgba(255, 255, 255, 0.95);
+  --bg-video-offset: 70%;
+}
