@@ -6,6 +6,29 @@ body {
   color: white;
   font-family: "Calligrapher", cursive;
   background-color: #0a0506;
+  overflow-x: hidden;
+}
+#parent {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#child {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding-right: 17px;
+  box-sizing: content-box;
+  scrollbar-width: none;
+}
+
+/* Chrome, Edge, Safari, Opera */
+#child::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
 }
 
 :root {
@@ -17,10 +40,10 @@ body {
   --gold-muted: #ffdca0; /* soft gold */
   --panel-bg: rgba(215, 65, 124, 0.15); /* transparent pink for panels */
   --white-accent: rgba(255, 255, 255, 0.95);
-  --bg-video-offset: 70%; /* visible center Y for the video */
+  --bg-video-offset: 70%;
 }
 
-/* Background overlay (tint) — video is inserted in HTML as #bg-video */
+/* Background overlay(tint)*/
 body::before {
   content: "";
   position: fixed;
@@ -37,7 +60,7 @@ body::before {
   z-index: -1;
 }
 
-/* Background video element (fills viewport behind UI) */
+/* Background video */
 #bg-video {
   position: fixed;
   inset: 0;
@@ -198,7 +221,7 @@ footer {
   background: rgba(255, 255, 255, 0.05);
   width: 30px;
   height: 30px;
-  border-radius: 50%;
+  border-radius: 90%;
   border: 1px solid var(--gold);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
 }
@@ -214,7 +237,7 @@ footer {
   transform: scale(0.97);
 }
 
-/* ---------- PLAYER CARD ---------- */
+/* ---------- player cards for each person---------- */
 .player-card {
   width: 320px;
   height: 440px;
@@ -227,8 +250,7 @@ footer {
 
 .player-card:hover {
   transform: scale(1.05);
-  box-shadow: 
-    0 0 30px rgba(212, 175, 55, 0.5),
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.5),
     0 0 60px rgba(215, 65, 124, 0.25);
 }
 
@@ -273,27 +295,27 @@ footer {
 .card-front img.player-img {
   width: 160px;
   height: 160px;
-  border-radius: 50%; /* 👑 makes it circular */
+  border-radius: 50%;
   object-fit: cover;
   border: 3px solid var(--gold);
-  box-shadow: 
-    0 0 20px rgba(212, 175, 55, 0.4),
-    0 0 40px rgba(215, 65, 124, 0.2);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.4), 0 0 40px rgba(215, 65, 124, 0.2);
   margin-top: 1.2rem;
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
-
 
 .card-front h2 {
   font-size: 1.8rem;
   margin: 0.6rem 0 0;
   color: var(--gold-strong);
-  text-shadow: 0 0 10px rgba(216,180,110,0.32);;
+  text-shadow: 0 0 10px rgba(216, 180, 110, 0.32);
+  padding-top: 21px;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 
 .card-front p {
   font-size: 1.1rem;
   color: var(--white-accent);
+  padding-top: 15px;
 }
 
 .card-back {
@@ -312,21 +334,6 @@ footer {
   color: var(--white-accent);
   font-size: 1rem;
   margin: 0.3rem 0;
-}
-.github-link {
-    color: var(--gold);
-    font-size: 1.8rem;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 
-.github-link:hover {
-    color: var(--gold-strong);
-    transform: translateY(-2px);
-    text-shadow: 0 0 15px rgba(216,180,110,0.32);
-}
-
-.github-link:active {
-    transform: translateY(0);
-}
