@@ -8,7 +8,7 @@
 **William Le** - AI Prompt Enginner / Project Manager
 
 ## ABOUT THE WEBSITE
-The website uses the RiotAPI and takes the players stats / mastery points from their champions and determine the base possible outcome to help them improve.
+The website uses the RiotAPI and takes the players stats / mastery points from their champions and determine the best possible outcome to help players improve their gameplay.
 
 ## How it works
 Put any names into the search bar and to add more players just click the add player button
@@ -16,6 +16,8 @@ Put any names into the search bar and to add more players just click the add pla
 The numbers of name that you can put in is between 1-5 players
 
 After doing so click search and watch as the website starts grabbing info of the players put in
+
+**Clicking on the "About Me" tab will introduce you to the developers of the websites and has our github/linkedin to connect with us if anyone wants to reach out!**
 
 <img width="1248" height="826" alt="image" src="https://github.com/user-attachments/assets/eb6f322b-ca53-4958-a4de-61cbb58c5bed" />
 
