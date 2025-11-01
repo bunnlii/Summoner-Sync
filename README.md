@@ -1,11 +1,11 @@
 # Summoner-Sync
 
 ## Team Who Worked on the Project
-**Jeffrey Le** - Backend Developer
+**Jeffrey Le**- Backend Developer
 
-**Libby Zou**  - Frontend Developer
+**Libby Zou** - Frontend Developer
 
-**William Le** - AI Prompt Enginner / Project Manager
+**William Le**- AI Prompt Enginner / Project Manager
 
 ## ABOUT THE WEBSITE
 The website uses the RiotAPI and takes the players stats / mastery points from their champions and determine the base possible outcome to help them improve.
@@ -33,7 +33,7 @@ After doing so click search and watch as the website starts grabbing info of the
 
 <img put image of the cards here>
 
-**IF More than 2+ players** 
+## IF More than 2+ players:
 
 6. The AI will help duos find good pairing to use
 
@@ -43,9 +43,11 @@ After doing so click search and watch as the website starts grabbing info of the
 
 9. The AI will talk to each player about the strengeths and waekness of the comp and how to use the comp to win
 
-10. If it's a solo player then it will skip the step and move on
+10. If it's a solo player then it will skip to step 11
 
 <img put the image of the AI prompts or textbox with the info here>
+
+## Final Steps:
 
 11. Finally after helping out the player(s) it will give the player and overall bullet points of what they should work on right now
 
