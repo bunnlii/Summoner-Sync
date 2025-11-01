@@ -20,3 +20,4 @@ Key focus areas for improvement
 Suggestions for future growth
 Fun, casual AI tone — playful teasing, motivational comments, not robotic
 Demo / Screenshots
+<img width="1248" height="826" alt="image" src="https://github.com/user-attachments/assets/eb6f322b-ca53-4958-a4de-61cbb58c5bed" />
