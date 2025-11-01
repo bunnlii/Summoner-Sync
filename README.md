@@ -1,11 +1,11 @@
 # Summoner-Sync
 
 ## Team Who Worked on the Project
-**Jeffrey Le**- Backend Developer
+**Jeffrey Le** - Backend Developer
 
-**Libby Zou** - Frontend Developer
+**Libby Zou**  - Frontend Developer
 
-**William Le**- AI Prompt Enginner / Project Manager
+**William Le** - AI Prompt Enginner / Project Manager
 
 ## ABOUT THE WEBSITE
 The website uses the RiotAPI and takes the players stats / mastery points from their champions and determine the base possible outcome to help them improve.
