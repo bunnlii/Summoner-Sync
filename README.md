@@ -20,10 +20,15 @@ After doing so click search and watch as the website starts grabbing info of the
 <img width="1248" height="826" alt="image" src="https://github.com/user-attachments/assets/eb6f322b-ca53-4958-a4de-61cbb58c5bed" />
 
 ## Once its given the data it will respond with:
+
 1. Giving out players rank
+
 2. Top 5 Mastery Champions
+
 3. Stats in the past 20+ Games
+
 4. Strengeths, Weakness, and areas to improve
+
 5. It will recommend some new champions to help the player try a new style or learn a certain fundamental
 
 <img put image of the cards here>
