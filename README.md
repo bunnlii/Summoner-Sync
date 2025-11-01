@@ -12,7 +12,9 @@ The website uses the RiotAPI and takes the players stats / mastery points from t
 
 ## How it works
 Put any names into the search bar and to add more players just click the add player button
+
 The numbers of name that you can put in is between 1-5 players
+
 After doing so click search and watch as the website starts grabbing info of the players put in
 
 <img width="1248" height="826" alt="image" src="https://github.com/user-attachments/assets/eb6f322b-ca53-4958-a4de-61cbb58c5bed" />
@@ -27,13 +29,19 @@ After doing so click search and watch as the website starts grabbing info of the
 <img put image of the cards here>
 
 **IF More than 2+ players** 
+
 6. The AI will help duos find good pairing to use
+
 7. The AI will help trios find 3 stack combos to play
+
 8. The AI will help 4-5 stack players build an actual team comps 
+
 9. The AI will talk to each player about the strengeths and waekness of the comp and how to use the comp to win
+
 10. If it's a solo player then it will skip the step and move on
 
 <img put the image of the AI prompts or textbox with the info here>
 
 11. Finally after helping out the player(s) it will give the player and overall bullet points of what they should work on right now
+
 12. The AI will also try its best to recommend the player to come back after a few months and see if they improve to get more help
