@@ -2,7 +2,9 @@
 
 ## Team Who Worked on the Project
 **Jeffrey Le** - Backend Developer
+
 **Libby Zou**  - Frontend Developer
+
 **William Le** - AI Prompt Enginner / Project Manager
 
 ## ABOUT THE WEBSITE
