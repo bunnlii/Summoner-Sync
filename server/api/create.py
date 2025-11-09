@@ -31,17 +31,17 @@ def ep_create(event: Dict[str, Any]): # This endpoint will create the important 
         try:
             players_in = json.loads(players_in)
         except Exception:
-            return _bad_request("'players' must be an array of objects, not a string")
+            return bad(400, "'players' must be an array of objects, not a string")
 
     # Validate structure
     if not isinstance(players_in, list) or not players_in:
-        return _bad_request("`players` must be a non-empty array of {playerName, gameTag}")
+        return bad(400, "`players` must be a non-empty array of {playerName, gameTag}")
 
     for i, rec in enumerate(players_in):
         if not isinstance(rec, dict):
-            return _bad_request(f"'players[{i}]' must be an object with playerName and gameTag")
+            return bad(400, f"'players[{i}]' must be an object with playerName and gameTag")
         if "playerName" not in rec or "gameTag" not in rec:
-            return _bad_request(f"'players[{i}]' is missing playerName and/or gameTag.")
+            return bad(400, f"'players[{i}]' is missing playerName and/or gameTag.")
 
 
     results = []

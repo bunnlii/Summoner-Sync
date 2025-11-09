@@ -96,3 +96,57 @@ def find_player(participants, name, gameTag):
             return participant
         
     raise LookupError(f"Unable to find the player in list of participants. Please provide correct participant information")
+
+def get_player_rank(puuid):
+    url = f"https://na1.api.riotgames.com/lol/league/v4/entries/by-puuid/{puuid}?api_key={os.environ.get("RIOT_API_KEY")}"
+
+    try:
+        with urllib.request.urlopen(url) as response:
+            data = json.loads(response.read().decode())
+            '''
+            RESPONSE:
+            [
+                {
+                    "leagueId": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+                    "summonerId": "Crolwick",
+                    "summonerName": "Crolwick",
+                    "queueType": "RANKED_SOLO_5x5",
+                    "tier": "GOLD",
+                    "rank": "II",
+                    "leaguePoints": 0,
+                    "wins": 0,
+                    "losses": 0,
+                    "hotStreak": false,
+                    "veteran": false,
+                    "freshBlood": false,
+                    "inactive": false
+                },
+                {
+                    "leagueId": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+                    "summonerId": "Crolwick",
+                    "summonerName": "Crolwick",
+                    "queueType": "RANKED_FLEX_SR",
+                    "tier": "SILVER",
+                    "rank": "II",
+                    "leaguePoints": 0,
+                    "wins": 0,
+                    "losses": 0,
+                    "hotStreak": false,
+                    "veteran": false,
+                    "freshBlood": false,
+                    "inactive": false
+                }
+            ]
+            '''
+
+            if len(data) == 0:
+                raise LookupError(f"The player has no ranked data. Please check the API documentation to ensure format is still correct, else you gave the wrong URL.")
+
+            print('Status Code: 200')
+        return data
+    except Exception as e:
+        print(f"Error making API call: {e}")
+        return {
+            'statusCode': 500,
+            'body': json.dumps(f"Error: {str(e)}")
+        }

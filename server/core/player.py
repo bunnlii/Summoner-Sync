@@ -1,6 +1,6 @@
 import os
 import json
-from core.utils import get_puuid, get_champion_name, get_match, find_player
+from core.utils import get_puuid, get_champion_name, get_match, find_player, get_player_rank
 import urllib.request
 
 class Player:
@@ -72,7 +72,13 @@ class Player:
         for history_id in history_ids:
             match_info = get_match(history_id)
 
-            match = {}
+            if match_info['info']['gameMode'] != "CLASSIC":
+                continue
+
+            if match_info['info']['gameDuration'] < 240: # Game is a Remake
+                continue
+
+            print(f"Match ID: {history_id}")
 
             player = find_player(match_info['info']['participants'], self._player_name, self._game_tag)
             chal = player['challenges']
@@ -83,63 +89,65 @@ class Player:
             seconds = game_time % 100
 
             # CS / Farming
-            self.cs += player['totalMinionsKilled']
-            self.cs_min += (player['totalMinionsKilled'] // minutes)
+            self.cs += player.get('totalMinionsKilled', 0)
+            self.cs_min += player.get('totalMinionsKilled', 0) / minutes
 
             # Vision
-            self.vision_score += player['visionScore']
-            self.vision_min += chal['visionScorePerMinute']
-            self.wards_place += player['wardsPlaced']
-            self.wards_kill += player['wardsKilled']
-            self.pink_wards += chal['controlWardsPlaced']
+            self.vision_score += player.get('visionScore', 0)
+            self.vision_min   += chal.get('visionScorePerMinute', 0)
+            self.wards_place  += player.get('wardsPlaced', 0)
+            self.wards_kill   += player.get('wardsKilled', 0)
+            self.pink_wards   += chal.get('controlWardsPlaced', 0)
 
-            self.longest_living_time += player['longestTimeSpentLiving']
+            self.longest_living_time += player.get('longestTimeSpentLiving', 0)
 
             # Gold
-            self.gold += player['goldEarned']
-            self.gold_min += chal['goldPerMinute']
-            self.bounty_gold += chal['bountyGold']
+            self.gold        += player.get('goldEarned', 0)
+            self.gold_min    += chal.get('goldPerMinute', 0)
+            self.bounty_gold += chal.get('bountyGold', 0)
 
             # Firsts
-            self.first_bloods += player['firstBloodKill']
-            self.first_towers += player['firstTowerKill']
-            self.obj_dmg += player['damageDealtToObjectives']
-            self.avg_dmg += player['totalDamageDealt']
+            self.first_bloods += 1 if player.get('firstBloodKill') else 0
+            self.first_towers += 1 if player.get('firstTowerKill') else 0
+            self.obj_dmg      += player.get('damageDealtToObjectives', 0)
+            self.avg_dmg      += player.get('totalDamageDealt', 0)
 
-            # KDA
-            self.kills += player['kills']
-            self.assits += player['assists']
-            self.deaths += player['deaths']
-            self.kda += chal['kda']
-            self.kp += chal['killParticipation']
+            # KDA / KP
+            self.kills  += player.get('kills', 0)
+            self.assits += player.get('assists', 0)
+            self.deaths += player.get('deaths', 0)
+            self.kda    += chal.get('kda', 0)
+            self.kp     += chal.get('killParticipation', 0)
 
-            # Win/Lose
-            self.wins += player['win']
-            self.loses += not player['win']
-            
-            # Lanes & Roles
-            lane = player['lane']
-            role = player['role']
-            gamemode = match_info['info']['gameMode']
+            # Win / Lose
+            if player.get('win') is True:
+                self.wins += 1
+            elif player.get('win') is False:
+                self.loses += 1
 
-            if lane not in self.lanes.keys():
-                self.lanes[lane] = 1
-            else:
-                self.lanes[lane] += 1
+            # Lane / Role / Gamemode
+            lane     = player.get('lane', 'NONE')
+            role     = player.get('role', 'UNKNOWN')
+            gamemode = match_info['info'].get('gameMode', 'UNKNOWN')
 
-            if role not in self.roles.keys():
-                self.roles[role] = 1
-            else:
-                self.roles[role] += 1
-
-            if gamemode not in self.gamemodes.keys():
-                self.gamemodes[gamemode] = 1
-            else:
-                self.gamemodes[gamemode] += 1
+            self.lanes[lane]        = self.lanes.get(lane, 0) + 1
+            self.roles[role]        = self.roles.get(role, 0) + 1
+            self.gamemodes[gamemode]= self.gamemodes.get(gamemode, 0) + 1
 
     def returnPlayerStats(self):
         # Compile and Organize Player Data
         totalGames = self.wins + self.loses
+
+        player_ranks = get_player_rank(self.puuid)
+
+        rank_solo = ranked_flex = None
+
+        for rank in player_ranks:
+            if rank['queueType'] == 'RANKED_SOLO_5x5':
+                ranked_solo = {"tier": rank['tier'], "rank": rank['rank'], "wins": rank['wins'], "losses": rank['losses']}
+            
+            if rank['queueType'] == 'RANKED_FLEX_SR':
+                ranked_flex = {"tier": rank['tier'], "rank": rank['rank'], "wins": rank['wins'], "losses": rank['losses']}
 
         player = {
             "kda": self.kda,
@@ -173,6 +181,8 @@ class Player:
         player['mostPlayedRole'] = max_role
         player['mostPlayedLane'] = max_lane
         player['mostPlayedGamemode'] = max_gamemode
+        player['rankedSolo'] = ranked_solo
+        player['rankedFlex'] = ranked_flex
 
         return player
 
