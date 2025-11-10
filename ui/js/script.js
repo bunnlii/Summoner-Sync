@@ -128,7 +128,7 @@
           window.sessionId = data.sessionId;
           localStorage.setItem("players", JSON.stringify(players));
           // Auto-redirect without alert
-          window.location.href = `../html/results.html?session=${data.sessionId}`;
+          window.location.href = `./html/results.html?session=${data.sessionId}`;
         } else {
           hideLoadingOverlay();
           showPopup("Could not create session");

@@ -6,7 +6,7 @@
 
     <!--CSS-->
     <link rel="stylesheet" href="../css/styles.css" />
-    <link rel="stylesheet" href="../css/results.css" />
+    <link rel="stylesheet" href="../css/teamai.css" />
 
     <!--Fonts-->
     <link
@@ -27,7 +27,7 @@
     <!--Marked Library for Markdown-->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-    <title>Summoner Sync</title>
+    <title>Team AI Insight - Summoner Sync</title>
   </head>
 
   <body>
@@ -71,7 +71,23 @@
     </header>
 
     <main>
-      <section id="players-container" class="players-grid"></section>
+      <section id="team-ai-section" class="team-ai-section">
+        <div class="team-ai-wrapper">
+          <div id="team-ai-container" class="team-ai-card">
+            <video class="team-ai-background" autoplay muted loop playsinline>
+              <source src="../video-image/yunara-league-of-legends-moewalls-com.mp4" type="video/mp4">
+            </video>
+            <h2>Team AI Insight</h2>
+            <p id="team-ai-content"><span class="loading-spinner"></span> Hm... Interesting team, let's see....</p>
+          </div>
+
+          <div class="button-container">
+            <button id="back-to-results" class="back-button" aria-label="Back to Results">
+              <i class="fas fa-arrow-left"></i> Back to Results
+            </button>
+          </div>
+        </div>
+      </section>
     </main>
 
     <!-- Scroll to Top Button -->
@@ -99,6 +115,6 @@
     </footer>
 
   <!-- JS Files -->
-  <script src="../js/results.js" defer></script>
+  <script src="../js/teamai.js" defer></script>
   </body>
 </html>
