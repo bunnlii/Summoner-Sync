@@ -1,3 +1,6 @@
+#https://main.d24t3qqg86y3ak.amplifyapp.com/html/about.html 
+
+
 # Summoner-Sync
 
 ## Team Who Worked on the Project
