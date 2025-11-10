@@ -126,6 +126,11 @@ document.addEventListener("DOMContentLoaded", async () => {
           return "Unable to generate team AI insight at this time. At least 2 players are required for this insight";
         }
         
+        // Check if it's a service unavailable error
+        if (teamAiResp.status === 503) {
+          return "Unable to generate team AI insight at this time. Too many request are being done right now, please try again later.";
+        }
+        
         throw new Error(
           `Team AI Insight API returned ${teamAiResp.status}: ${errorBody}`
         );
@@ -389,7 +394,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       errorCard.innerHTML = `
         <div style="text-align: center; padding: 2rem;">
           <h2 style="color: var(--primary-light);">${p.playerName}#${p.gameTag}</h2>
-          <p style="color: var(--gold); margin-top: 1rem;">Failed to load data for this player. </p><p>Please check if you entered the right summoner name and tag.</p>
+          <p style="color: var(--gold); margin-top: 1rem;">Failed to load data for this player. </p><p>Please check if you entered the right summoner name and tag. <br> There may be too many requests.</p>
           <p style="color: var(--white-accent); margin-top: 0.5rem; font-size: 0.9rem;">Error: ${err.message}</p>
         </div>
       `;
