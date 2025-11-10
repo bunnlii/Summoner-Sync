@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<!-- Base CSS -->
+		<link rel="stylesheet" href="../css/styles.css" />
+		<link rel="stylesheet" href="../css/about.css" />
+
+		<!-- Fonts -->
+		<link
+			href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Calligrapher&display=swap"
+			rel="stylesheet"
+		/>
+
+		<!-- Icons -->
+		<link
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+			rel="stylesheet"
+		/>
+
+		<title>About • Summoner Sync</title>
+
+			<!-- Page-specific CSS -->
+	</head>
+	<body>
+		<div id="parent">
+			<div id="child">
+				<!-- Background video -->
+				<video
+					id="bg-video"
+					autoplay
+					muted
+					loop
+					playsinline
+					aria-hidden="true"
+					role="presentation"
+				>
+					<source
+						src="../video-image/skt-t1-skins-league-of-legends-moewalls-com (online-video-cutter.com).mp4"
+						type="video/mp4"
+					/>
+					Your browser does not support the video tag.
+				</video>
+
+				<!-- Header -->
+				<header>
+					<div class="header-content">
+						<div class="site-brand">
+							<a href="index.html">
+								<img
+									src="../video-image/logo.png"
+									alt="Summoner Sync logo"
+									class="site-logo"
+								/>
+							</a>
+							<h1>Summoner Sync</h1>
+						</div>
+						<nav aria-label="Main navigation">
+							<ul>
+								<li><a href="about.html" aria-current="page">About</a></li>
+								<li><a href="team.html">Meet the Team</a></li>
+								<li><a href="index.html">Home</a></li>
+							</ul>
+						</nav>
+					</div>
+				</header>
+
+				<!-- Main -->
+				<main>
+					<div class="about-wrapper">
+						<section class="about-hero" aria-labelledby="about-title">
+							<h2 id="about-title">About Summoner Sync</h2>
+							<p>
+								Summoner Sync helps you compare up to five League of Legends players by
+								pulling recent match stats and champion mastery data straight from Riot’s APIs.
+								It presents clean insights so you can quickly understand performance and style.
+							</p>
+						</section>
+
+						<section aria-label="Key features">
+							<div class="cards">
+								<div class="card">
+									<h3><i class="fa-solid fa-chart-line"></i> Player Insights</h3>
+									<p>
+										See averages like KDA, CS/min, vision, damage, and lane tendencies computed
+										from recent matches.
+									</p>
+								</div>
+								<div class="card">
+									<h3><i class="fa-solid fa-users"></i> Side-by-side Compare</h3>
+									<p>
+										Add multiple Riot IDs (GameName#Tag) to build a quick comparison board for a lobby or team.
+									</p>
+								</div>
+								<div class="card">
+									<h3><i class="fa-solid fa-dragon"></i> Champion Mastery</h3>
+									<p>
+										View each player’s top champion masteries with names, roles, and points at a glance.
+									</p>
+								</div>
+							</div>
+						</section>
+
+						<section class="about-section" aria-labelledby="how-title">
+							<h3 id="how-title">How it works</h3>
+							<ul>
+								<li>Enter a Riot ID like <strong>GameName#TAG</strong> and hit Search.</li>
+								<li>Our backend fetches the player’s PUUID, recent matches, and rankings using Riot APIs.</li>
+								<li>We compute readable summaries (averages and highlights) and render your comparison.</li>
+							</ul>
+						</section>
+
+						<section class="about-section" aria-labelledby="data-title">
+							<h3 id="data-title">Data & attribution</h3>
+							<ul>
+								<li>Not endorsed by Riot Games — League of Legends™ © Riot Games, Inc.</li>
+								<li>Data is fetched via official Riot API endpoints using your provided Riot IDs.</li>
+								<li>We may cache results briefly to improve performance.</li>
+							</ul>
+						</section>
+
+						<section class="about-section" aria-labelledby="tech-title">
+							<h3 id="tech-title">Tech stack</h3>
+							<ul>
+								<li>Frontend: HTML/CSS/JS</li>
+								<li>Backend: Python (server), integrations with Riot API</li>
+								<li>Hosting/Infra: AWS-backed APIs</li>
+							</ul>
+						</section>
+
+						<div class="cta">
+							<a href="index.html" aria-label="Go to home to try Summoner Sync">Try Summoner Sync</a>
+						</div>
+					</div>
+				</main>
+
+				<!-- Footer -->
+				<footer>
+					<div class="footer-content">
+						<p>
+							&copy;2025 Rift Rewind • Not endorsed by Riot Games or AWS •
+							League of Legends™ © Riot Games, Inc. • Powered by Amazon Web
+							Services
+						</p>
+						<div class="social-links">
+							<a
+								href="https://github.com/bunnlii/Summoner-Sync"
+								target="_blank"
+								class="github-link"
+							>
+								<i class="fab fa-github"></i>
+							</a>
+						</div>
+					</div>
+				</footer>
+			</div>
+		</div>
+			<script src="../js/header.js" defer></script>
+		</body>
+  
+</html>

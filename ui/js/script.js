@@ -50,7 +50,7 @@
     //make sure riot id is in the right format
     const match = val.match(/^\s*([^#]+)#([A-Za-z0-9]{1,5})\s*$/);
     if (!match) {
-      showPopup("check if your RIOT ID is correct");
+      showPopup("check if your RIOT ID is spelled correctly");
       input.setAttribute("aria-invalid", "true");
       input.focus();
       return;
@@ -88,20 +88,87 @@
     if (cur) {
       const match = cur.match(/^\s*([^#]+)#([A-Za-z0-9]{1,5})\s*$/);
       if (!match) {
-        showPopup("check if your summoner is spelled correctly");
+        showPopup("check if your RIOT ID is spelled correctly");
         input.setAttribute("aria-invalid", "true");
         input.focus();
         return;
       }
       values.push(cur);
     }
-    // TODO: replace with real search
-    console.log("Search players:", values);
-    alert(
-      "Searching for: " +
-        (values.length ? values.join(", ") : "(no names entered)")
-    );
+    // player names
+    const players = values.map((val) => {
+      const [playerName, gameTag] = val.split("#");
+      return { playerName, gameTag };
+    });
+
+    // Show full-screen loading overlay
+    showLoadingOverlay();
+    searchBtn.disabled = true;
+
+    fetch(
+      "https://6s6bu9zrxe.execute-api.us-west-1.amazonaws.com/summsync/player/create",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ players }),
+      }
+    )
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`Server responded with ${res.status}`);
+        }
+        return res.json();
+      })
+      .then((data) => {
+        console.log("AWS Response:", data);
+
+        if (data.sessionId) {
+          window.sessionId = data.sessionId;
+          localStorage.setItem("players", JSON.stringify(players));
+          // Auto-redirect without alert
+          window.location.href = `../html/results.html?session=${data.sessionId}`;
+        } else {
+          hideLoadingOverlay();
+          showPopup("Could not create session");
+          searchBtn.disabled = false;
+        }
+      })
+      .catch((err) => {
+        console.error("Error:", err);
+        hideLoadingOverlay();
+        showPopup("Something went wrong connecting to the API");
+        searchBtn.disabled = false;
+      });
   });
+
+  // Loading overlay functions
+  function showLoadingOverlay() {
+    let overlay = document.getElementById("loading-overlay");
+    if (!overlay) {
+      overlay = document.createElement("div");
+      overlay.id = "loading-overlay";
+      overlay.className = "loading-overlay";
+      overlay.setAttribute("role", "status");
+      overlay.setAttribute("aria-live", "polite");
+      overlay.innerHTML = `
+        <div class="loading-overlay-content">
+          <div class="loading-spinner-large"></div>
+          <p class="loading-overlay-text">Loading...</p>
+        </div>
+      `;
+      document.body.appendChild(overlay);
+    }
+    overlay.classList.add("visible");
+  }
+
+  function hideLoadingOverlay() {
+    const overlay = document.getElementById("loading-overlay");
+    if (overlay) {
+      overlay.classList.remove("visible");
+    }
+  }
 
   const helpIcon = document.querySelector(".help-icon");
   let popupTimeout = null;
@@ -235,10 +302,9 @@ document.addEventListener("DOMContentLoaded", () => {
   child.addEventListener("scroll", () => {
     const currentScroll = child.scrollTop;
 
-    if (currentScroll > lastScrollY && currentScroll > 100) {
+    if (currentScroll > lastScrollY && currentScroll > 50) {
       header.classList.add("hidden");
-    } 
-    else {
+    } else {
       header.classList.remove("hidden");
     }
 

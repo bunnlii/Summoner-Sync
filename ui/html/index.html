@@ -61,7 +61,7 @@
 
             <nav aria-label="Main navigation">
               <ul>
-                <li><a href="results.html">About</a></li>
+                <li><a href="about.html">About</a></li>
                 <li><a href="team.html">Meet the Team</a></li>
                 <li><a href="index.html">Home</a></li>
               </ul>
@@ -88,6 +88,8 @@
                     class="search-input"
                     aria-label="Summoner name input"
                   />
+                  <!---drop down suggestions that I will do later--->
+                  <ul id="suggestions" class="suggestions-list" role="listbox" aria-label="Summoner suggestions"></ul>
                   <div
                     class="help-icon"
                     tabindex="0"
@@ -105,7 +107,8 @@
                     aria-hidden="true"
                   >
                     Enter your League of Legends RIOT ID. Click ADD ANOTHER
-                    PLAYER to compare with others up to 4 other players
+                    PLAYER to add up to 5 PLAYERS in total. Get insights on
+                    each player's performance, stats, and more.
                   </div>
                   <div
                     id="input-error"
@@ -122,6 +125,10 @@
                 >
                   Search
                 </button>
+                <div id="search-loading" class="search-loading" aria-hidden="true">
+                  <div class="loading-spinner"></div>
+                  <span class="loading-text">Loading...</span>
+                </div>
               </div>
             </div>
             <button

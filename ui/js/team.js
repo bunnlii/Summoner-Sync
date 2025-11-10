@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
   child.addEventListener("scroll", () => {
     const currentScroll = child.scrollTop;
 
-    if (currentScroll > lastScrollY && currentScroll > 100) {
+    if (currentScroll > lastScrollY && currentScroll > 50) {
       header.classList.add("hidden");
     } 
     else {
